@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class MavenKotlinErudioApplicationTests {
+class ErudioAppTests {
 
     @Test
     fun contextLoads() {

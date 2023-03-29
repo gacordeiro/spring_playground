@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class MavenKotlinErudioApplication
+class ErudioApp
 
 fun main(args: Array<String>) {
-    runApplication<MavenKotlinErudioApplication>(*args)
+    runApplication<ErudioApp>(*args)
 }

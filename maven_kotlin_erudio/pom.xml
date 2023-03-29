@@ -12,7 +12,7 @@
     <artifactId>maven_kotlin_erudio</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>maven_kotlin_erudio</name>
-    <description>maven_kotlin_erudio</description>
+    <description>ErudioApp, written in Kotlin, using Maven build system</description>
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.7.22</kotlin.version>
