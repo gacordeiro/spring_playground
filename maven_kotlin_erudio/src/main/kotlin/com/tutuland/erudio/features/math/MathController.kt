@@ -1,12 +1,14 @@
 package com.tutuland.erudio.features.math
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class MathController {
-    val math = MathOperations()
+    @Autowired
+    private lateinit var math: MathService
 
     @RequestMapping(value = ["/sum/{first}/{second}"])
     fun sum(

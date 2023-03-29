@@ -1,8 +1,10 @@
 package com.tutuland.erudio.features.math
 
 import com.tutuland.erudio.exceptions.MathOperationException
+import org.springframework.stereotype.Service
 
-class MathOperations {
+@Service
+class MathService {
 
     fun sum(first: String, second: String) = applyCalc(first, second) { a, b ->
         a + b
