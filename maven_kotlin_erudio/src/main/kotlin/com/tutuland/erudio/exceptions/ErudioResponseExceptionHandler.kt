@@ -28,7 +28,7 @@ class ErudioResponseExceptionHandler : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(MathOperationException::class)
     fun handleMathOperationException(
-        exception: MathOperationException,
+        exception: Exception,
         request: WebRequest,
     ): ResponseEntity<ExceptionResponse> {
         val exceptionResponse = ExceptionResponse(
@@ -37,5 +37,18 @@ class ErudioResponseExceptionHandler : ResponseEntityExceptionHandler() {
             message = exception.message,
         )
         return ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(ResourceNotFoundException::class)
+    fun handleResourceNotFoundException(
+        exception: Exception,
+        request: WebRequest,
+    ): ResponseEntity<ExceptionResponse> {
+        val exceptionResponse = ExceptionResponse(
+            timestamp = Date(),
+            details = request.getDescription(false),
+            message = exception.message,
+        )
+        return ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND)
     }
 }
