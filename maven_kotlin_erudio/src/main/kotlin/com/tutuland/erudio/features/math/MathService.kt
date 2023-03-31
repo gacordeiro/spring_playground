@@ -1,6 +1,7 @@
 package com.tutuland.erudio.features.math
 
 import com.tutuland.erudio.exceptions.MathOperationException
+import com.tutuland.erudio.mapping.asDouble
 import org.springframework.stereotype.Service
 
 @Service
@@ -32,18 +33,13 @@ class MathService {
     }
 
     private fun applyCalc(number: String, calc: (Double) -> Double): Double {
-        val a = number.toDouble()
+        val a = number.asDouble()
         return calc(a)
     }
 
     private fun applyCalc(first: String, second: String, calc: (Double, Double) -> Double): Double {
-        val a = first.toDouble()
-        val b = second.toDouble()
+        val a = first.asDouble()
+        val b = second.asDouble()
         return calc(a, b)
     }
-
-    private fun String?.toDouble() = this
-        ?.replace(",", ".")
-        ?.toDoubleOrNull()
-        ?: throw MathOperationException("Please set valid numeric values")
 }

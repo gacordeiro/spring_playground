@@ -1,31 +1,38 @@
-package com.tutuland.erudio.features.person
+package com.tutuland.erudio.features.person.data
 
 import com.tutuland.erudio.exceptions.ResourceNotFoundException
+import com.tutuland.erudio.features.person.PersonRepository
+import com.tutuland.erudio.features.person.domain.Person
+import com.tutuland.erudio.mapping.mapAs
+import com.tutuland.erudio.mapping.mapEachAs
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.util.concurrent.atomic.AtomicLong
 import java.util.logging.Logger
 
 @Service
 class PersonService {
     @Autowired
     private lateinit var repository: PersonRepository
-    private val counter = AtomicLong()
     private val logger = Logger.getLogger(PersonService::class.java.name)
 
     fun findAll(): List<Person> {
         logger.info("Finding all people.")
         return repository.findAll()
+            .mapEachAs(Person::class.java)
     }
 
     fun findById(id: Long): Person {
         logger.info("Finding one person.")
-        return repository.findById(id).orElseThrow { ResourceNotFoundException("No records for ID: $id") }
+        return repository.findById(id)
+            .orElseThrow { ResourceNotFoundException("No records for ID: $id") }
+            .mapAs(Person::class.java)
     }
 
-    fun create(entity: Person): Person {
-        logger.info("Creating person: ${entity.firstName}")
+    fun create(person: Person): Person {
+        logger.info("Creating person: ${person.firstName}")
+        val entity = person.mapAs(PersonEntity::class.java)
         return repository.save(entity)
+            .mapAs(Person::class.java)
     }
 
     fun update(person: Person): Person {
@@ -37,6 +44,7 @@ class PersonService {
         entity.address = person.address
         entity.gender = person.gender
         return repository.save(entity)
+            .mapAs(Person::class.java)
     }
 
     fun delete(id: Long) {

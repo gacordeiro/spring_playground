@@ -1,5 +1,7 @@
 package com.tutuland.erudio.features.person
 
+import com.tutuland.erudio.features.person.data.PersonService
+import com.tutuland.erudio.features.person.domain.Person
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
