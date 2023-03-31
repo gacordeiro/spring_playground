@@ -9,7 +9,7 @@ import com.tutuland.erudio.mockPersonList
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class DozerMapperTest {
+class ModelMapperTest {
     @Test
     fun `when mapping a single PersonEntity to Person, mapper completes properly`() {
         val input = mockPersonEntity(0)
